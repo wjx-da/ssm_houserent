@@ -90,7 +90,7 @@
 			 </div>
 		  </div>
 			  <div class="form-group">
-			  	<span class="col-md-3""></span>
+			  	<span class="col-md-3"></span>
 			  	<span onclick="ajaxUserInfoModify();" class="btn btn-primary bottom5 top5">修改</span>
 			  </div>
 		</form> 

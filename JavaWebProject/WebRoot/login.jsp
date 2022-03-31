@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="css/login.css" />
 </head>
 <body>
-
+<script type="text/javascript" src="user/js/background.js"></script>
 
 <div id="login">
 	<p>登录帐号：<input type="text"  id="manager" class="textbox"></p>

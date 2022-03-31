@@ -1,12 +1,16 @@
 package com.chengxusheji.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
- 
+
+import com.chengxusheji.util.RandomValidateCodeUtil;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model;
@@ -24,7 +28,6 @@ import com.chengxusheji.utils.UserException;
 
  
 @Controller
-@SessionAttributes("username")
 public class SystemController { 
 	
 	@Resource AdminService adminService;  
@@ -34,7 +37,22 @@ public class SystemController {
 		model.addAttribute(new Admin());
 		return "login";
 	}
+	@RequestMapping(value = "/getcode",method = RequestMethod.GET)
+	public void getCode(HttpServletResponse response, HttpServletRequest request) throws Exception{
+		System.out.println("=--------====");
+		HttpSession session=request.getSession();
+		//利用图片工具生成图片
+		//第一个参数是生成的验证码，第二个参数是生成的图片
+		Object[] objs = RandomValidateCodeUtil.createImage();
+		//将验证码存入Session
+		session.setAttribute("imageCode",objs[0]);
 
+		//将图片输出给浏览器
+		BufferedImage image = (BufferedImage) objs[1];
+		response.setContentType("image/png");
+		OutputStream os = response.getOutputStream();
+		ImageIO.write(image, "png", os);
+	}
 	//前台用户登录
 	@RequestMapping(value="/frontLogin",method=RequestMethod.POST)
 	public void frontLogin(@RequestParam("userName")String userName,@RequestParam("password")String password,HttpServletResponse response,HttpSession session) throws Exception { 

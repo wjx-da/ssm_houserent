@@ -92,6 +92,10 @@ public class UserInfo {
         this.address = address;
     }
 
+    private String email;
+    public String getEmail() {return email;}
+    public void setEmail(String email) {this.email = email;}
+
     public JSONObject getJsonObject() throws JSONException {
     	JSONObject jsonUserInfo=new JSONObject(); 
 		jsonUserInfo.accumulate("user_name", this.getUser_name());
@@ -103,5 +107,6 @@ public class UserInfo {
 		jsonUserInfo.accumulate("city", this.getCity());
 		jsonUserInfo.accumulate("photo", this.getPhoto());
 		jsonUserInfo.accumulate("address", this.getAddress());
+        jsonUserInfo.accumulate("email", this.getEmail());
 		return jsonUserInfo;
     }}

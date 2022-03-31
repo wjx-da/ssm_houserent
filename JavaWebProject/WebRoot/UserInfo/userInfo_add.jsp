@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*"  contentType="text/html;charset=UTF-8"%>
-<jsp:include page="../check_logstate.jsp"/>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/userInfo.css" />
+
 <div id="userInfoAddDiv">
 	<form id="userInfoAddForm" enctype="multipart/form-data"  method="post">
 		<div>
@@ -72,12 +72,18 @@
 				<input class="textbox" type="text" id="userInfo_address" name="userInfo.address" style="width:200px" />
 
 			</span>
+		</div>
+		<div>
+			<span class="label">电子邮件:</span>
+			<span class="inputControl">
+				<input class="textbox" type="text" id="userInfo_email" name="userInfo.email" style="width:200px" />
+			</span>
 
 		</div>
 		<div class="operation">
 			<a id="userInfoAddButton" class="easyui-linkbutton">添加</a>
 			<a id="userInfoClearButton" class="easyui-linkbutton">重填</a>
-		</div> 
+		</div>
 	</form>
 </div>
-<script src="${pageContext.request.contextPath}/UserInfo/js/userInfo_add.js"></script> 
+<script src="${pageContext.request.contextPath}/UserInfo/js/userInfo_add.js"></script>

@@ -35,9 +35,7 @@
 			<span class="label">密码:</span>
 			<span class="inputControl">
 				<input class="textbox" type="text" id="userInfo_password_edit" name="userInfo.password" style="width:200px" />
-
 			</span>
-
 		</div>
 		<div>
 			<span class="label">姓名:</span>
@@ -77,7 +75,6 @@
 				<input class="textbox" type="text" id="userInfo_city_edit" name="userInfo.city" style="width:200px" />
 
 			</span>
-
 		</div>
 		<div>
 			<span class="label">照片:</span>
@@ -94,6 +91,12 @@
 
 			</span>
 
+		</div>
+		<div>
+			<span class="label">电子邮件:</span>
+			<span class="inputControl">
+				<input class="textbox" type="text" id="userInfo_email_edit" name="userInfo.email" style="width:200px" />
+			</span>
 		</div>
 	</form>
 </div>

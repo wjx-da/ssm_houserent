@@ -187,6 +187,7 @@ public class UserInfoController extends BaseController {
 	public void update(@Validated UserInfo userInfo, BindingResult br,
 			Model model, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String message = "";
+		System.out.println(userInfo.getEmail()+"===========");
     	boolean success = false;
 		if (br.hasErrors()) { 
 			message = "输入的信息有错误！";

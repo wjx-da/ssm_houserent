@@ -65,6 +65,10 @@ $(function () {
 				field : "address",
 				title : "家庭地址",
 				width : 140,
+			},{
+				field : "email",
+				title : "电子邮件",
+				width : 140,
 			},
 		]],
 	});
@@ -246,6 +250,11 @@ function initUserInfoManageTool() {
 							$("#userInfo_photo").val(userInfo.photo);
 							$("#userInfo_photoImg").attr("src", userInfo.photo);
 							$("#userInfo_address_edit").val(userInfo.address);
+							$("#userInfo_email_edit").val(userInfo.email);
+							$("#userInfo_email_edit").validatebox({
+								required : true,
+								missingMessage : "请输入电子邮箱",
+							});
 						} else {
 							$.messager.alert("获取失败！", "未知错误导致失败，请重试！", "warning");
 						}

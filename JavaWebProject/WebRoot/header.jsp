@@ -35,8 +35,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				  	String user_name = (String)session.getAttribute("user_name");
 				    if(user_name==null){
 	  			%> 
-	  			<li><a href="#" onclick="register();"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;注册</a></li>
-                <li><a href="#" onclick="login();"><i class="fa fa-user"></i>&nbsp;&nbsp;登录</a></li>
+	  			<li><a href="user/register.jsp"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;注册</a></li>
+                <li><a href="user/login.jsp"><i class="fa fa-user"></i>&nbsp;&nbsp;登录</a></li>
                 
                 <% } else { %>
                 <li class="dropdown">
