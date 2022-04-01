@@ -82,16 +82,19 @@ public class UserInfoController extends BaseController {
 	}
 	/*客户端form表单方式提交添加用户信息信息*/
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
-	public String addUser(@Validated UserInfo userInfo, String code,Model model,  HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(userInfo.toString());
+	public String addUser(@Validated UserInfo userInfo, String code,Model model,  HttpServletRequest request, HttpSession session) throws Exception {
+		System.out.println("====="+userInfo.toString());
 		String message = "";
-		boolean success = false;
+		if(!code.equals(session.getAttribute("checkCode"))){
+			message = "验证码错误！";
+			request.setAttribute("msg",message);
+			return "user/register";
+		}
 		if(userInfoService.getUserInfo(userInfo.getUser_name()) != null) {
 			message = "用户名已经存在！";
 			request.setAttribute("msg",message);
 			return "user/register";
 		}
-
 		try {
 			userInfo.setPhoto(this.handlePhotoUpload(request, "photoFile"));
 		} catch(UserException ex) {
