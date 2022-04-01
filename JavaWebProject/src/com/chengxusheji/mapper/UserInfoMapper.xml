@@ -34,7 +34,10 @@ mapper.xml以statement为单位管理sql语句
 	<select id="getUserInfo" parameterType="string" resultMap="userInfoMap">
 		select * from t_userInfo where t_userInfo.user_name = #{user_name}
 	</select>
-
+	<!-- 根据主键查询某个用户信息记录 -->
+	<select id="checkLogin" parameterType="string" resultMap="userInfoMap">
+		select * from t_userInfo where t_userInfo.user_name = #{0} and t_userInfo.password = #{1}
+	</select>
 	<!-- 更新用户信息记录 -->
 	<update id="updateUserInfo" parameterType="userInfo">
 		update t_userInfo set password=#{password},realName=#{realName},sex=#{sex},birthday=#{birthday},cardNumber=#{cardNumber},city=#{city},photo=#{photo},address=#{address},email=#{email} where user_name = #{user_name}

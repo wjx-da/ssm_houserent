@@ -11,7 +11,6 @@
 </head>
 <body>
 <script type="text/javascript" src="user/js/background.js"></script>
-
 <div id="login">
 	<p>登录帐号：<input type="text"  id="manager" class="textbox"></p>
 	<p>登录密码：<input type="password" id="password" class="textbox"></p>

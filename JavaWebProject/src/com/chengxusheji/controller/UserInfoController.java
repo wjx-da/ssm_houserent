@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.chengxusheji.utils.ServerResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,6 +55,7 @@ public class UserInfoController extends BaseController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public void add(@Validated UserInfo userInfo, BindingResult br,
 			Model model, HttpServletRequest request,HttpServletResponse response) throws Exception {
+		System.out.println(userInfo.toString());
 		String message = "";
 		boolean success = false;
 		if (br.hasErrors()) {
@@ -77,6 +79,30 @@ public class UserInfoController extends BaseController {
         message = "用户信息添加成功!";
         success = true;
         writeJsonResponse(response, success, message);
+	}
+	/*客户端form表单方式提交添加用户信息信息*/
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	public String addUser(@Validated UserInfo userInfo, String code,Model model,  HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println(userInfo.toString());
+		String message = "";
+		boolean success = false;
+		if(userInfoService.getUserInfo(userInfo.getUser_name()) != null) {
+			message = "用户名已经存在！";
+			request.setAttribute("msg",message);
+			return "user/register";
+		}
+
+		try {
+			userInfo.setPhoto(this.handlePhotoUpload(request, "photoFile"));
+		} catch(UserException ex) {
+			message = "图片格式不正确！";
+			request.setAttribute("msg",message);
+			return "user/register";
+		}
+		userInfoService.addUserInfo(userInfo);
+		message = "用户注册成功!";
+		request.setAttribute("msg",message);
+		return "user/login";
 	}
 	/*ajax方式按照查询条件分页查询用户信息信息*/
 	@RequestMapping(value = { "/list" }, method = {RequestMethod.GET,RequestMethod.POST})

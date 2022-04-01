@@ -96,6 +96,22 @@ public class UserInfo {
     public String getEmail() {return email;}
     public void setEmail(String email) {this.email = email;}
 
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "user_name='" + user_name + '\'' +
+                ", password='" + password + '\'' +
+                ", realName='" + realName + '\'' +
+                ", sex='" + sex + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", cardNumber='" + cardNumber + '\'' +
+                ", city='" + city + '\'' +
+                ", photo='" + photo + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
     public JSONObject getJsonObject() throws JSONException {
     	JSONObject jsonUserInfo=new JSONObject(); 
 		jsonUserInfo.accumulate("user_name", this.getUser_name());

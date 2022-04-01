@@ -3,6 +3,7 @@ package com.chengxusheji.controller;
 import java.awt.image.BufferedImage;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
@@ -10,34 +11,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+import com.chengxusheji.po.Admin;
+import com.chengxusheji.service.AdminService;
+import com.chengxusheji.service.UserInfoService;
 import com.chengxusheji.util.RandomValidateCodeUtil;
+import com.chengxusheji.utils.*;
 import org.json.JSONObject;
-import org.springframework.stereotype.Controller; 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated; 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-  
-import com.chengxusheji.po.Admin;
-import com.chengxusheji.service.AdminService;
-import com.chengxusheji.utils.UserException;
 
- 
+
 @Controller
 public class SystemController { 
 	
 	@Resource AdminService adminService;  
-	
-	@RequestMapping(value="/login",method=RequestMethod.GET)
+	@Resource
+	UserInfoService userInfoService;
+	@RequestMapping(value="/login",method= RequestMethod.GET)
 	public String login(Model model) {
 		model.addAttribute(new Admin());
 		return "login";
 	}
-	@RequestMapping(value = "/getcode",method = RequestMethod.GET)
+	@RequestMapping(value = "/getcode")
 	public void getCode(HttpServletResponse response, HttpServletRequest request) throws Exception{
 		System.out.println("=--------====");
 		HttpSession session=request.getSession();
@@ -55,33 +58,32 @@ public class SystemController {
 	}
 	//前台用户登录
 	@RequestMapping(value="/frontLogin",method=RequestMethod.POST)
-	public void frontLogin(@RequestParam("userName")String userName,@RequestParam("password")String password,HttpServletResponse response,HttpSession session) throws Exception { 
-		boolean success = true;
-		String msg = ""; 
-
+	public String frontLogin(@RequestParam("username")String username, @RequestParam("password")String password,
+							 String verification, Model model, HttpServletResponse response, HttpSession session) throws Exception {
+		String text = (String) session.getAttribute("imageCode");
+		System.out.println(username+"======"+password+"=========="+verification);
+		if(!text.equals(verification)) {
+			model.addAttribute("msg","验证码错误");
+			return "user/login";
+		}
+		if (!userInfoService.checkLogin(username,password)) {
+			model.addAttribute("msg","用户名或密码错误");
+			return "user/login";
+		}
+		//成功后将登录信息放入session
+		session.setAttribute("user_name", username);
 		/*
-		if (!userInfoService.checkLogin(userName, password)) { 
-			msg = userInfoService.getErrMessage();
-			success = false; 
-		} 
+
 		if(success) {
 			session.setAttribute("user_name", userName); 
 		}*/
   
-        response.setContentType("text/json;charset=UTF-8");  
-        PrintWriter out = response.getWriter();  
-        //将要被返回到客户端的对象   
-        JSONObject json=new JSONObject();   
-        json.accumulate("success", success);
-        json.accumulate("msg", msg);
-        out.println(json.toString());   
-        out.flush();  
-        out.close();  
+        return "index";
 	}
 
 
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public void login(@Validated Admin admin,BindingResult br,Model model,HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception { 
+	public void login(@Validated Admin admin, BindingResult br, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		boolean success = true;
 		String msg = ""; 
 		if(br.hasErrors()) {
@@ -98,7 +100,7 @@ public class SystemController {
         response.setContentType("text/json;charset=UTF-8");  
         PrintWriter out = response.getWriter();  
         //将要被返回到客户端的对象   
-        JSONObject json=new JSONObject();   
+        JSONObject json=new JSONObject();
         json.accumulate("success", success);
         json.accumulate("msg", msg);
         out.println(json.toString());   
@@ -141,7 +143,27 @@ public class SystemController {
 			return "error";
 		}   
 	}
-	
+	//    获取验证码ajax
+	@RequestMapping(value = "/customer_getCode",method = RequestMethod.GET)
+	@ResponseBody
+	public ServerResponse getCheckedCode(String email, HttpServletRequest request, HttpServletResponse response,HttpSession session) {
+				ServerResponse result ;
+				String checkCode = String.valueOf(new Random().nextInt(899999) + 100000);
+				String message = "您的注册验证码为：" + checkCode;
+				//在session中添加验证码：
+				session.setAttribute("checkCode",checkCode);
+				System.out.println(checkCode+"==========");
+				try {
+					JavaEmailSender.sendEmail(email, "注册验证码", message);
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println(e);
+				}
+				result =ServerResponse.getSuccess(checkCode);
+				result.setStatus(1);
+		System.out.println(result.getData());
+		return result;
+	}
 	
 	
 	

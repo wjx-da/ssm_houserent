@@ -89,7 +89,7 @@
 					 </div>
 				  </div>
 		          <div class="form-group">
-		             <span class="col-md-2""></span>
+		             <span class="col-md-2"></span>
 		             <span onclick="ajaxUserInfoAdd();" class="btn btn-primary bottom5 top5">添加</span>
 		          </div> 
 		          <style>#userInfoAddForm .form-group {margin:5px;}  </style>  

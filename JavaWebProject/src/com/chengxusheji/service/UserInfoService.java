@@ -1,7 +1,9 @@
 package com.chengxusheji.service;
 
 import java.util.ArrayList;
-import javax.annotation.Resource; 
+import javax.annotation.Resource;
+
+import com.chengxusheji.utils.ServerResponse;
 import org.springframework.stereotype.Service;
 import com.chengxusheji.po.UserInfo;
 
@@ -89,7 +91,14 @@ public class UserInfoService {
         UserInfo userInfo = userInfoMapper.getUserInfo(user_name);
         return userInfo;
     }
-
+    /*根据主键获取用户信息记录*/
+    public boolean checkLogin(String user_name,String password) throws Exception  {
+        UserInfo userInfo = userInfoMapper.checkLogin(user_name,password);
+        if(userInfo != null){
+            return true;
+        }
+        return false;
+    }
     /*更新用户信息记录*/
     public void updateUserInfo(UserInfo userInfo) throws Exception {
         userInfoMapper.updateUserInfo(userInfo);

@@ -26,4 +26,5 @@ public interface UserInfoMapper {
 	/*删除用户信息记录*/
 	public void deleteUserInfo(String user_name) throws Exception;
 
+	UserInfo checkLogin(String user_name, String password);
 }
