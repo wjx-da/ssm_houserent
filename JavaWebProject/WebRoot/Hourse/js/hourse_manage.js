@@ -86,6 +86,11 @@ $(function () {
 				title : "联系电话",
 				width : 140,
 			},
+			{
+				field : "userInfo",
+				title : "租户",
+				width : 140,
+			},
 		]],
 	});
 
@@ -208,6 +213,7 @@ function initHourseManageTool() {
 			queryParams["madeYear"] = $("#madeYear").val();
 			queryParams["connectPerson"] = $("#connectPerson").val();
 			queryParams["connectPhone"] = $("#connectPhone").val();
+			queryParams["userInfo"] = $("#userInfo").val();
 			$("#hourse_manage").datagrid("options").queryParams=queryParams; 
 			$("#hourse_manage").datagrid("load");
 		},

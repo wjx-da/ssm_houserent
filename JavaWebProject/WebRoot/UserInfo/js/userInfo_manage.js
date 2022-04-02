@@ -70,6 +70,16 @@ $(function () {
 				title : "电子邮件",
 				width : 140,
 			},
+			{
+				field : "telephone",
+				title : "手机号",
+				width : 140,
+			},
+			{
+				field : "price",
+				title : "预期租金",
+				width : 140,
+			},
 		]],
 	});
 

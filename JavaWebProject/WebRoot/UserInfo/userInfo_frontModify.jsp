@@ -31,10 +31,10 @@
       	<form class="form-horizontal" name="userInfoEditForm" id="userInfoEditForm" enctype="multipart/form-data" method="post"  class="mar_t15">
 		  <div class="form-group">
 			 <label for="userInfo_user_name_edit" class="col-md-3 text-right">用户名:</label>
-			 <div class="col-md-9"> 
+			 <div class="col-md-9">
 			 	<input type="text" id="userInfo_user_name_edit" name="userInfo.user_name" class="form-control" placeholder="请输入用户名" readOnly>
 			 </div>
-		  </div> 
+		  </div>
 		  <div class="form-group">
 		  	 <label for="userInfo_password_edit" class="col-md-3 text-right">密码:</label>
 		  	 <div class="col-md-9">
@@ -89,6 +89,24 @@
 			    <input type="text" id="userInfo_address_edit" name="userInfo.address" class="form-control" placeholder="请输入家庭地址">
 			 </div>
 		  </div>
+			<div class="form-group">
+				<label for="userInfo_email_edit" class="col-md-3 text-right">电子邮件:</label>
+				<div class="col-md-9">
+					<input type="text" id="userInfo_email_edit" name="userInfo.email" class="form-control" placeholder="请输入电子邮件">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="userInfo_telephone_edit" class="col-md-3 text-right">手机号:</label>
+				<div class="col-md-9">
+					<input type="text" id="userInfo_telephone_edit" name="userInfo.telephone" class="form-control" placeholder="请输入手机号">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="userInfo_price_edit" class="col-md-3 text-right">预期租金:</label>
+				<div class="col-md-9">
+					<input type="text" id="userInfo_price_edit" name="userInfo.price" class="form-control" placeholder="请输入预期租金件">
+				</div>
+			</div>
 			  <div class="form-group">
 			  	<span class="col-md-3"></span>
 			  	<span onclick="ajaxUserInfoModify();" class="btn btn-primary bottom5 top5">修改</span>
@@ -127,6 +145,9 @@ function userInfoEdit(user_name) {
 				$("#userInfo_photo").val(userInfo.photo);
 				$("#userInfo_photoImg").attr("src", basePath +　userInfo.photo);
 				$("#userInfo_address_edit").val(userInfo.address);
+				$("#userInfo_email_edit").val(userInfo.email);
+				$("#userInfo_telephone_edit").val(userInfo.telephone);
+				$("#userInfo_price_edit").val(userInfo.price);
 			} else {
 				alert("获取信息失败！");
 			}
@@ -174,7 +195,7 @@ $(function(){
     	startView: 2,
     	forceParse: 0
     });
-    userInfoEdit("<%=request.getParameter("user_name")%>");
+    userInfoEdit("<%=session.getAttribute("user_name")%>");
  })
  </script> 
 </body>

@@ -26,4 +26,5 @@ public interface WantHourseInfoMapper {
 	/*删除求租信息记录*/
 	public void deleteWantHourseInfo(int wantHourseId) throws Exception;
 
+    int queryHourseInfoCount(String realName, Integer hourseId);
 }

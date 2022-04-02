@@ -137,6 +137,7 @@ public class HourseTypeController extends BaseController {
         HourseType hourseType = hourseTypeService.getHourseType(typeId);
 
         request.setAttribute("hourseType",  hourseType);
+		request.setAttribute("hourseType",  hourseType);
         return "HourseType/hourseType_frontshow";
 	}
 

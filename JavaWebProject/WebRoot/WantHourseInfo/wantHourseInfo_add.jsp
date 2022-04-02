@@ -31,6 +31,12 @@
 			</span>
 		</div>
 		<div>
+			<span class="label">具体房间:</span>
+			<span class="inputControl">
+				<input class="textbox" type="text" id="wantHourseInfo_hourseObj_hourseId" name="wantHourseInfo.hourseId" style="width: auto"/>
+			</span>
+		</div>
+		<div>
 			<span class="label">价格范围:</span>
 			<span class="inputControl">
 				<input class="textbox" type="text" id="wantHourseInfo_priceRangeObj_rangeId" name="wantHourseInfo.priceRangeObj.rangeId" style="width: auto"/>

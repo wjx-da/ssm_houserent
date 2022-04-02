@@ -98,6 +98,18 @@
 				<input class="textbox" type="text" id="userInfo_email_edit" name="userInfo.email" style="width:200px" />
 			</span>
 		</div>
+		<div>
+			<span class="label">手机号:</span>
+			<span class="inputControl">
+				<input class="textbox" type="text" id="userInfo_telephone_edit" name="userInfo.telephone" style="width:200px" />
+			</span>
+		</div>
+		<div>
+			<span class="label">预期租金:</span>
+			<span class="inputControl">
+				<input class="textbox" type="text" id="userInfo_price_edit" name="userInfo.price" style="width:200px" />
+			</span>
+		</div>
 	</form>
 </div>
 <script type="text/javascript" src="UserInfo/js/userInfo_manage.js"></script> 

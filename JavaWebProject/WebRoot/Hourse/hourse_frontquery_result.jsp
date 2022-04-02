@@ -97,6 +97,9 @@
 			     	<div class="field">
 	            		联系电话:<%=hourse.getConnectPhone() %>
 			     	</div>
+					 <div class="field">
+						 出租信息:<%=hourse.getUserInfo() %>
+					 </div>
 			        <a class="btn btn-primary top5" href="<%=basePath %>Hourse/<%=hourse.getHourseId() %>/frontshow">详情</a>
 			        <a class="btn btn-primary top5" onclick="hourseEdit('<%=hourse.getHourseId() %>');" style="display:none;">修改</a>
 			        <a class="btn btn-primary top5" onclick="hourseDelete('<%=hourse.getHourseId() %>');" style="display:none;">删除</a>

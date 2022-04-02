@@ -8,8 +8,8 @@ mapper.xml以statement为单位管理sql语句
  -->
 	<!-- 添加用户信息记录 -->
 	<insert id="addUserInfo" parameterType="userInfo">
-		insert into t_userInfo(user_name,password,realName,sex,birthday,cardNumber,city,photo,address,email) values
-		(#{user_name},#{password},#{realName},#{sex},#{birthday},#{cardNumber},#{city},#{photo},#{address},#{email})
+		insert into t_userInfo(user_name,password,realName,sex,birthday,cardNumber,city,photo,address,email,telephone,price) values
+		(#{user_name},#{password},#{realName},#{sex},#{birthday},#{cardNumber},#{city},#{photo},#{address},#{email},#{telephone},#{price})
 	</insert>
 
 	<!-- 按照查询条件分页查询用户信息记录 -->
@@ -40,7 +40,7 @@ mapper.xml以statement为单位管理sql语句
 	</select>
 	<!-- 更新用户信息记录 -->
 	<update id="updateUserInfo" parameterType="userInfo">
-		update t_userInfo set password=#{password},realName=#{realName},sex=#{sex},birthday=#{birthday},cardNumber=#{cardNumber},city=#{city},photo=#{photo},address=#{address},email=#{email} where user_name = #{user_name}
+		update t_userInfo set password=#{password},realName=#{realName},sex=#{sex},birthday=#{birthday},cardNumber=#{cardNumber},city=#{city},photo=#{photo},address=#{address},email=#{email},price=#{price},telephone=#{telephone} where user_name = #{user_name}
 	</update>
 
 	<!-- 删除用户信息记录 -->

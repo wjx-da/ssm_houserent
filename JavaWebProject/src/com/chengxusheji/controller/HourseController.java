@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.chengxusheji.po.*;
+import com.chengxusheji.service.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,14 +30,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.chengxusheji.utils.ExportExcelUtil;
 import com.chengxusheji.utils.UserException;
-import com.chengxusheji.service.HourseService;
-import com.chengxusheji.po.Hourse;
-import com.chengxusheji.service.BuildingInfoService;
-import com.chengxusheji.po.BuildingInfo;
-import com.chengxusheji.service.HourseTypeService;
-import com.chengxusheji.po.HourseType;
-import com.chengxusheji.service.PriceRangeService;
-import com.chengxusheji.po.PriceRange;
 
 //Hourse管理控制层
 @Controller
@@ -44,7 +38,8 @@ public class HourseController extends BaseController {
 
     /*业务层对象*/
     @Resource HourseService hourseService;
-
+	@Resource
+	WantHourseInfoService wantHourseInfoService;
     @Resource BuildingInfoService buildingInfoService;
     @Resource HourseTypeService hourseTypeService;
     @Resource PriceRangeService priceRangeService;
@@ -203,7 +198,44 @@ public class HourseController extends BaseController {
         request.setAttribute("hourse",  hourse);
         return "Hourse/hourse_frontshow";
 	}
-
+	/*前台查询Hourse信息*/
+	@RequestMapping(value="/{hourseId}/change",method=RequestMethod.GET)
+	public String change(@PathVariable Integer hourseId,Model model,HttpServletRequest request,HttpSession session) throws Exception {
+		/*根据主键hourseId获取Hourse对象*/
+		Hourse hourse = hourseService.getHourse(hourseId);
+		//获取当前用户;
+		UserInfo user = (UserInfo) session.getAttribute("user");
+		request.setAttribute("hourse",  hourse);
+		if(wantHourseInfoService.query(user,hourse)){
+			request.setAttribute("msg","你已经申请租了这一间房，请等待协商");
+			return "Hourse/hourse_frontshow";
+		}
+		//创建wantHourseInfo 添加申请租房信息：
+		WantHourseInfo wantHourseInfo = new WantHourseInfo();
+		//获取楼盘信息：
+		BuildingInfo buildingObj = hourse.getBuildingObj();
+		//获取区域信息：
+		AreaInfo areaObj = buildingObj.getAreaObj();
+		//完善求租信息：
+		wantHourseInfo.setHourseId(hourse.getHourseId());
+		wantHourseInfo.setUserObj(user);
+		wantHourseInfo.setTitle("租房申请");
+		wantHourseInfo.setPosition(areaObj);
+		wantHourseInfo.setPriceRangeObj(hourse.getPriceRangeObj());
+		wantHourseInfo.setHourseTypeObj(hourse.getHourseTypeObj());
+		wantHourseInfo.setLianxiren(user.getRealName());
+		wantHourseInfo.setTelephone(user.getTelephone());
+		wantHourseInfo.setPrice(user.getPrice());
+		wantHourseInfoService.addWantHourseInfo(wantHourseInfo);
+		List<BuildingInfo> buildingInfoList = buildingInfoService.queryAllBuildingInfo();
+		request.setAttribute("buildingInfoList", buildingInfoList);
+		List<HourseType> hourseTypeList = hourseTypeService.queryAllHourseType();
+		request.setAttribute("hourseTypeList", hourseTypeList);
+		List<PriceRange> priceRangeList = priceRangeService.queryAllPriceRange();
+		request.setAttribute("priceRangeList", priceRangeList);
+		request.setAttribute("msg","申请成功！");
+		return "Hourse/hourse_frontshow";
+	}
 	/*ajax方式显示房屋信息修改jsp视图页*/
 	@RequestMapping(value="/{hourseId}/update",method=RequestMethod.GET)
 	public void update(@PathVariable Integer hourseId,Model model,HttpServletRequest request,HttpServletResponse response) throws Exception {

@@ -147,6 +147,14 @@
 			</span>
 
 		</div>
+		<div>
+			<span class="label">租户:</span>
+			<span class="inputControl">
+				<input class="textbox" type="text" id="hourse_user_edit" name="hourse.userInfo" style="width:200px" />
+
+			</span>
+
+		</div>
 	</form>
 </div>
 <script type="text/javascript" src="Hourse/js/hourse_manage.js"></script> 

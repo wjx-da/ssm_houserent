@@ -156,6 +156,32 @@ public class Hourse {
     public void setAddress(String address) {
         this.address = address;
     }
+    /*租户信息：*/
+    private String userInfo;
+    public String getUserInfo() {return userInfo;}
+    public void setUserInfo(String userInfo) {this.userInfo = userInfo;}
+    @Override
+    public String toString() {
+        return "Hourse{" +
+                "hourseId=" + hourseId +
+                ", hourseName='" + hourseName + '\'' +
+                ", buildingObj=" + buildingObj +
+                ", housePhoto='" + housePhoto + '\'' +
+                ", hourseTypeObj=" + hourseTypeObj +
+                ", priceRangeObj=" + priceRangeObj +
+                ", area='" + area + '\'' +
+                ", price=" + price +
+                ", louceng='" + louceng + '\'' +
+                ", zhuangxiu='" + zhuangxiu + '\'' +
+                ", caoxiang='" + caoxiang + '\'' +
+                ", madeYear='" + madeYear + '\'' +
+                ", connectPerson='" + connectPerson + '\'' +
+                ", connectPhone='" + connectPhone + '\'' +
+                ", detail='" + detail + '\'' +
+                ", address='" + address + '\'' +
+                ", userInfo='" + userInfo + '\'' +
+                '}';
+    }
 
     public JSONObject getJsonObject() throws JSONException {
     	JSONObject jsonHourse=new JSONObject(); 
@@ -178,5 +204,6 @@ public class Hourse {
 		jsonHourse.accumulate("connectPhone", this.getConnectPhone());
 		jsonHourse.accumulate("detail", this.getDetail());
 		jsonHourse.accumulate("address", this.getAddress());
+        jsonHourse.accumulate("userInfo", this.getUserInfo());
 		return jsonHourse;
     }}

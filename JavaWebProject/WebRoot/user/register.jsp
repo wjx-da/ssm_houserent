@@ -130,15 +130,29 @@
                     <input id="photoFile" name="photoFile" type="file" size="50" />
                 </div>
                 <div>
-                    <label for="userInfo_address">家庭地址:</label>
+                    <label for="userInfo_telephone">联系电话:</label>
                     <span id="sp9" class="label"></span>
+                </div>
+                <div>
+                    <input class="ipt1" type="text" id="userInfo_telephone" name="telephone" placeholder="请输入联系电话"/>
+                </div>
+                <div>
+                    <label for="userInfo_price">期望租金:</label>
+                    <span id="sp19" class="label"></span>
+                </div>
+                <div>
+                    <input class="ipt1" type="text" id="userInfo_price" name="price" placeholder="请输入期望租金"/>
+                </div>
+                <div>
+                    <label for="userInfo_address">家庭地址:</label>
+                    <span id="sp29" class="label"></span>
                 </div>
                 <div>
                     <input class="ipt1" type="text" id="userInfo_address" name="address" placeholder="请输入家庭地址"/>
                 </div>
                 <div>
-                    性别<input type="radio" name="sex" value="man" checked="checked">男
-                     <input type="radio" name="sex" value="woman">女<br>
+                    性别<input type="radio" name="sex" value="男" checked="checked">男
+                     <input type="radio" name="sex" value="女">女<br>
                      <!--value是action传递走的值，下同 -->
                 </div>
                 <div>
@@ -159,9 +173,6 @@
     </div>
     <img class="lr-bm" src="${pageContext.request.contextPath}/user/images/jkf_imgs/bm.png" alt="">
 </div>
-
-<script type="text/javascript" src="${pageContext.request.contextPath}/user/js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/user/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/user/js/javaScript.form.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/user/js/register.js"></script>
 <script type="text/javascript">
@@ -170,7 +181,6 @@
     if(msg !=='null'){
         registerMsg.innerHTML =msg;
     }
-
 </script>
 </body>
 </html>

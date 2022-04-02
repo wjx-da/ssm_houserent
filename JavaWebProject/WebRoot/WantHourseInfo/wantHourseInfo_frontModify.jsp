@@ -218,7 +218,7 @@ $(function(){
             $('.navbar-collapse').collapse('hide');
         });
         new WOW().init();
-    wantHourseInfoEdit("<%=request.getParameter("wantHourseId")%>");
+    wantHourseInfoEdit("<%=session.getAttribute("wantHourseId")%>");
  })
  </script> 
 </body>

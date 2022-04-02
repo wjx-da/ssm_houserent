@@ -69,8 +69,12 @@ public class AreaInfoController extends BaseController {
 	/*ajax方式按照查询条件分页查询区域信息信息*/
 	@RequestMapping(value = { "/list" }, method = {RequestMethod.GET,RequestMethod.POST})
 	public void list(Integer page,Integer rows, Model model, HttpServletRequest request,HttpServletResponse response) throws Exception {
-		if (page==null || page == 0) page = 1;
-		if(rows != 0)areaInfoService.setRows(rows);
+		if (page==null || page == 0) {
+			page = 1;
+		}
+		if(rows != 0) {
+			areaInfoService.setRows(rows);
+		}
 		List<AreaInfo> areaInfoList = areaInfoService.queryAreaInfo(page);
 	    /*计算总的页数和总的记录数*/
 	    areaInfoService.queryTotalPageAndRecordNumber();
@@ -115,7 +119,9 @@ public class AreaInfoController extends BaseController {
 	/*前台按照查询条件分页查询区域信息信息*/
 	@RequestMapping(value = { "/frontlist" }, method = {RequestMethod.GET,RequestMethod.POST})
 	public String frontlist(Integer currentPage, Model model, HttpServletRequest request) throws Exception  {
-		if (currentPage==null || currentPage == 0) currentPage = 1;
+		if (currentPage==null || currentPage == 0) {
+			currentPage = 1;
+		}
 		List<AreaInfo> areaInfoList = areaInfoService.queryAreaInfo(currentPage);
 	    /*计算总的页数和总的记录数*/
 	    areaInfoService.queryTotalPageAndRecordNumber();

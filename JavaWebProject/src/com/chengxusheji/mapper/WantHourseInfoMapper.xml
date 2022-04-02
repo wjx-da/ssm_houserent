@@ -8,8 +8,8 @@ mapper.xml以statement为单位管理sql语句
  -->
 	<!-- 添加求租信息记录 -->
 	<insert id="addWantHourseInfo" parameterType="wantHourseInfo">
-		insert into t_wantHourseInfo(userObj,title,position,hourseTypeObj,priceRangeObj,price,lianxiren,telephone) values 
-		(#{userObj.user_name},#{title},#{position.areaId},#{hourseTypeObj.typeId},#{priceRangeObj.rangeId},#{price},#{lianxiren},#{telephone})
+		insert into t_wantHourseInfo(userObj,hourseId,title,position,hourseTypeObj,priceRangeObj,price,lianxiren,telephone) values
+		(#{userObj.user_name},#{hourseId},#{title},#{position.areaId},#{hourseTypeObj.typeId},#{priceRangeObj.rangeId},#{price},#{lianxiren},#{telephone})
 	</insert>
 
 	<!-- 按照查询条件分页查询求租信息记录 -->
@@ -48,5 +48,7 @@ mapper.xml以statement为单位管理sql语句
 	<delete id="deleteWantHourseInfo" parameterType="int">
 		delete from t_wantHourseInfo where wantHourseId=#{wantHourseId}
 	</delete>
-
+	<select id="queryHourseInfoCount" resultType="int">
+		select count(*) from t_wantHourseInfo where t_wantHourseInfo.userObj=#{0} and t_wantHourseInfo.hourseId=#{1}
+	</select>
 </mapper>

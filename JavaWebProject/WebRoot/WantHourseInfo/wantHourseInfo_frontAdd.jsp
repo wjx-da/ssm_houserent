@@ -64,6 +64,13 @@
 							    </select>
 						  	 </div>
 						  </div>
+							<div class="form-group">
+								<label for="wantHourseInfo_hourseObj_hourseId" class="col-md-2 text-right">具体房间:</label>
+								<div class="col-md-8">
+									<select id="wantHourseInfo_hourseObj_hourseId" name="wantHourseInfo.hourseId" class="form-control">
+									</select>
+								</div>
+							</div>
 						  <div class="form-group">
 						  	 <label for="wantHourseInfo_priceRangeObj_rangeId" class="col-md-2 text-right">价格范围:</label>
 						  	 <div class="col-md-8">
@@ -90,7 +97,7 @@
 							 </div>
 						  </div>
 				          <div class="form-group">
-				             <span class="col-md-2""></span>
+				             <span class="col-md-2"></span>
 				             <span onclick="ajaxWantHourseInfoAdd();" class="btn btn-primary bottom5 top5">添加</span>
 				          </div>
 						</form> 
@@ -221,6 +228,19 @@ $(function(){
     		});
     		$("#wantHourseInfo_hourseTypeObj_typeId").html(html);
     	}
+	});
+	//初始化房屋下拉框值
+	$.ajax({
+		url: basePath + "Hourse/listAll",
+		type: "get",
+		success: function(hourseTypes,response,status) {
+			$("#wantHourseInfo_hourseObj_hourseId").empty();
+			var html="";
+			$(hourseTypes).each(function(i,hourseType){
+				html += "<option value='" + hourseType.typeId + "'>" + hourseType.typeName + "</option>";
+			});
+			$("#wantHourseInfo_hourseObj_hourseId").html(html);
+		}
 	});
 	//初始化价格范围下拉框值 
 	$.ajax({

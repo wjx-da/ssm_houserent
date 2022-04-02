@@ -201,7 +201,6 @@ public class UserInfoController extends BaseController {
 	public void update(@PathVariable String user_name,Model model,HttpServletRequest request,HttpServletResponse response) throws Exception {
         /*根据主键user_name获取UserInfo对象*/
         UserInfo userInfo = userInfoService.getUserInfo(user_name);
-
         response.setContentType("text/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
 		//将要被返回到客户端的对象 
@@ -216,7 +215,7 @@ public class UserInfoController extends BaseController {
 	public void update(@Validated UserInfo userInfo, BindingResult br,
 			Model model, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String message = "";
-		System.out.println(userInfo.getEmail()+"===========");
+		System.out.println(userInfo.getEmail()+"=========================================================");
     	boolean success = false;
 		if (br.hasErrors()) { 
 			message = "输入的信息有错误！";
@@ -224,9 +223,7 @@ public class UserInfoController extends BaseController {
 			return;
 		}
 		String photoFileName = this.handlePhotoUpload(request, "photoFile");
-		if(!photoFileName.equals("upload/NoImage.jpg"))userInfo.setPhoto(photoFileName); 
-
-
+		if(!photoFileName.equals("upload/NoImage.jpg"))userInfo.setPhoto(photoFileName);
 		try {
 			userInfoService.updateUserInfo(userInfo);
 			message = "用户信息更新成功!";

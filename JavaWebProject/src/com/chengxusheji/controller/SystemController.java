@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 
 import com.chengxusheji.po.Admin;
+import com.chengxusheji.po.UserInfo;
 import com.chengxusheji.service.AdminService;
 import com.chengxusheji.service.UserInfoService;
 import com.chengxusheji.util.RandomValidateCodeUtil;
@@ -66,12 +67,14 @@ public class SystemController {
 			model.addAttribute("msg","验证码错误");
 			return "user/login";
 		}
-		if (!userInfoService.checkLogin(username,password)) {
+		UserInfo user =userInfoService.checkLogin(username,password);
+		if (user == null) {
 			model.addAttribute("msg","用户名或密码错误");
 			return "user/login";
 		}
 		//成功后将登录信息放入session
 		session.setAttribute("user_name", username);
+		session.setAttribute("user", user);
 		/*
 
 		if(success) {
@@ -148,20 +151,18 @@ public class SystemController {
 	@ResponseBody
 	public ServerResponse getCheckedCode(String email, HttpServletRequest request, HttpServletResponse response,HttpSession session) {
 				ServerResponse result ;
-				String checkCode = String.valueOf(new Random().nextInt(899999) + 100000);
-				String message = "您的注册验证码为：" + checkCode;
-				//在session中添加验证码：
-				session.setAttribute("checkCode",checkCode);
-				System.out.println(checkCode+"==========");
-				try {
-					JavaEmailSender.sendEmail(email, "注册验证码", message);
-				} catch (Exception e) {
-					e.printStackTrace();
-					System.out.println(e);
-				}
-				result =ServerResponse.getSuccess(checkCode);
-				result.setStatus(1);
-		System.out.println(result.getData());
+					String checkCode = String.valueOf(new Random().nextInt(899999) + 100000);
+					String message = "您的注册验证码为：" + checkCode;
+					//在session中添加验证码：
+					session.setAttribute("checkCode",checkCode);
+					try {
+						JavaEmailSender.sendEmail(email, "注册验证码", message);
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.out.println(e);
+					}
+				System.out.println("验证码"+message);
+					result =ServerResponse.getSuccess(checkCode);
 		return result;
 	}
 	

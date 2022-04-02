@@ -1,13 +1,10 @@
 package com.chengxusheji.service;
 
 import java.util.ArrayList;
-import javax.annotation.Resource; 
+import javax.annotation.Resource;
+
+import com.chengxusheji.po.*;
 import org.springframework.stereotype.Service;
-import com.chengxusheji.po.UserInfo;
-import com.chengxusheji.po.AreaInfo;
-import com.chengxusheji.po.HourseType;
-import com.chengxusheji.po.PriceRange;
-import com.chengxusheji.po.WantHourseInfo;
 
 import com.chengxusheji.mapper.WantHourseInfoMapper;
 @Service
@@ -111,5 +108,9 @@ public class WantHourseInfoService {
     		wantHourseInfoMapper.deleteWantHourseInfo(Integer.parseInt(_wantHourseId));
     	}
     	return _wantHourseIds.length;
+    }
+
+    public boolean query(UserInfo user, Hourse hourse) {
+       return wantHourseInfoMapper.queryHourseInfoCount(user.getRealName(),hourse.getHourseId()) > 0;
     }
 }

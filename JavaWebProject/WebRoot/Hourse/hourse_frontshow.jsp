@@ -1,9 +1,7 @@
-<%@ page language="java" import="java.util.*"  contentType="text/html;charset=UTF-8"%> 
-<%@ page import="com.chengxusheji.po.Hourse" %>
-<%@ page import="com.chengxusheji.po.BuildingInfo" %>
-<%@ page import="com.chengxusheji.po.HourseType" %>
-<%@ page import="com.chengxusheji.po.PriceRange" %>
+<%@ page language="java" import="java.util.*"  contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.chengxusheji.po.*" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -14,7 +12,6 @@
     //获取所有的priceRangeObj信息
     List<PriceRange> priceRangeList = (List<PriceRange>)request.getAttribute("priceRangeList");
     Hourse hourse = (Hourse)request.getAttribute("hourse");
-
 %>
 <!DOCTYPE html>
 <html>
@@ -106,12 +103,27 @@
 			<button onclick="history.back();" class="btn btn-primary">返回</button>
 		</div>
 	</div>
+	<div class="row bottom15">
+		<div class="col-md-2 col-xs-4"></div>
+		<div class="col-md-6 col-xs-6" id="test">
+
+		</div>
+	</div>
 </div> 
 <jsp:include page="../footer.jsp"></jsp:include>
 <script src="<%=basePath %>plugins/jquery.min.js"></script>
 <script src="<%=basePath %>plugins/bootstrap.js"></script>
 <script src="<%=basePath %>plugins/wow.min.js"></script>
 <script>
+	var msg = "<%=request.getAttribute("msg")%>";
+	if(msg !== 'null'){
+		document.getElementById("test").innerHTML = msg;
+	}
+	var userInfo = "<%=hourse.getUserInfo()%>";
+	var user = "<%=session.getAttribute("user")%>";
+	if(userInfo === 'null' && user !=='null' && msg ==='null'){
+		document.getElementById("test").innerHTML="<button onclick=\"location.href='<%=basePath %>Hourse/<%=hourse.getHourseId() %>/change'\" class=\"btn btn-primary\">申请租房</button>";
+	}
 var basePath = "<%=basePath%>";
 $(function(){
         /*小屏幕导航点击关闭菜单*/

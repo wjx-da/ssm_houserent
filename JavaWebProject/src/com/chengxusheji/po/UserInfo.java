@@ -96,6 +96,13 @@ public class UserInfo {
     public String getEmail() {return email;}
     public void setEmail(String email) {this.email = email;}
 
+    private String telephone;
+    public String getTelephone() {return telephone;}
+    public void setTelephone(String telephone) {this.telephone = telephone;}
+    private float price;
+    public float getPrice() {return price;}
+    public void setPrice(float price) {this.price = price;}
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -109,6 +116,8 @@ public class UserInfo {
                 ", photo='" + photo + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", price=" + price +
                 '}';
     }
 
@@ -124,5 +133,7 @@ public class UserInfo {
 		jsonUserInfo.accumulate("photo", this.getPhoto());
 		jsonUserInfo.accumulate("address", this.getAddress());
         jsonUserInfo.accumulate("email", this.getEmail());
+        jsonUserInfo.accumulate("telephone", this.getTelephone());
+        jsonUserInfo.accumulate("price", this.getPrice());
 		return jsonUserInfo;
     }}

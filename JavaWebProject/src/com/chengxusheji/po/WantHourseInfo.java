@@ -14,6 +14,10 @@ public class WantHourseInfo {
     public void setWantHourseId(Integer wantHourseId){
         this.wantHourseId = wantHourseId;
     }
+    /*房屋id*/
+    private Integer hourseId;
+    public Integer getHourseId() {return hourseId;}
+    public void setHourseId(Integer hourseId) {this.hourseId = hourseId;}
 
     /*求租用户*/
     private UserInfo userObj;
@@ -62,7 +66,6 @@ public class WantHourseInfo {
     }
 
     /*最高能出租金*/
-    @NotNull(message="必须输入最高能出租金")
     private Float price;
     public Float getPrice() {
         return price;
@@ -94,6 +97,7 @@ public class WantHourseInfo {
     public JSONObject getJsonObject() throws JSONException {
     	JSONObject jsonWantHourseInfo=new JSONObject(); 
 		jsonWantHourseInfo.accumulate("wantHourseId", this.getWantHourseId());
+        jsonWantHourseInfo.accumulate("hourseId", this.getHourseId());
 		jsonWantHourseInfo.accumulate("userObj", this.getUserObj().getRealName());
 		jsonWantHourseInfo.accumulate("userObjPri", this.getUserObj().getUser_name());
 		jsonWantHourseInfo.accumulate("title", this.getTitle());

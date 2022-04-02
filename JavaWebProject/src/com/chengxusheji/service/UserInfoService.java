@@ -3,7 +3,6 @@ package com.chengxusheji.service;
 import java.util.ArrayList;
 import javax.annotation.Resource;
 
-import com.chengxusheji.utils.ServerResponse;
 import org.springframework.stereotype.Service;
 import com.chengxusheji.po.UserInfo;
 
@@ -92,12 +91,9 @@ public class UserInfoService {
         return userInfo;
     }
     /*根据主键获取用户信息记录*/
-    public boolean checkLogin(String user_name,String password) throws Exception  {
+    public UserInfo checkLogin(String user_name, String password) throws Exception  {
         UserInfo userInfo = userInfoMapper.checkLogin(user_name,password);
-        if(userInfo != null){
-            return true;
-        }
-        return false;
+        return userInfo;
     }
     /*更新用户信息记录*/
     public void updateUserInfo(UserInfo userInfo) throws Exception {
@@ -116,5 +112,14 @@ public class UserInfoService {
     		userInfoMapper.deleteUserInfo(_user_name);
     	}
     	return _user_names.length;
+    }
+
+    public int checkUser(String email) {
+        try {
+            return userInfoMapper.queryUserInfoCount("where email='"+email+"'");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
