@@ -8,7 +8,7 @@ mapper.xml以statement为单位管理sql语句
  -->
 	<!-- 添加房屋信息记录 -->
 	<insert id="addHourse" parameterType="hourse">
-		insert into t_hourse(hourseName,buildingObj,housePhoto,hourseTypeObj,priceRangeObj,area,price,louceng,zhuangxiu,caoxiang,madeYear,connectPerson,connectPhone,detail,address) values 
+		insert into t_hourse(hourseName,buildingObj,housePhoto,hourseTypeObj,priceRangeObj,area,price,louceng,zhuangxiu,caoxiang,madeYear,connectPerson,connectPhone,detail,address) values
 		(#{hourseName},#{buildingObj.buildingId},#{housePhoto},#{hourseTypeObj.typeId},#{priceRangeObj.rangeId},#{area},#{price},#{louceng},#{zhuangxiu},#{caoxiang},#{madeYear},#{connectPerson},#{connectPhone},#{detail},#{address})
 	</insert>
 
