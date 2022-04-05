@@ -201,6 +201,23 @@ function initHourseManageTool() {
 		reload : function () {
 			$("#hourse_manage").datagrid("reload");
 		},
+		contract : function () {
+			var rows = $("#hourse_manage").datagrid("getSelections");
+			if (rows.length > 0) {
+				alert(rows[0].userInfo);
+				if(rows[0].userInfo === ''||rows[0].userInfo ==='null'||rows[0].userInfo === undefined){
+					$.messager.alert("提示", "请选择已出租的房间查看出租的合同！", "info");
+					return ;
+				}
+				$.messager.confirm("确定操作", "您确定要查看出租的合同吗？", function (flag) {
+					if (flag) {
+						top.location.href="Rent/Check?hourseId="+rows[0].hourseId;
+					}
+				});
+			} else {
+				$.messager.alert("提示", "请选择要查看出租的合同！", "info");
+			}
+		},
 		redo : function () {
 			$("#hourse_manage").datagrid("unselectAll");
 		},

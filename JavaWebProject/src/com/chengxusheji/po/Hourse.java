@@ -138,6 +138,17 @@ public class Hourse {
     public void setConnectPhone(String connectPhone) {
         this.connectPhone = connectPhone;
     }
+    /*联系电话*/
+    @NotEmpty(message="联系人身份证不能为空")
+    private String card;
+
+    public String getCard() {
+        return card;
+    }
+
+    public void setCard(String card) {
+        this.card = card;
+    }
 
     /*详细信息*/
     private String detail;
@@ -160,6 +171,7 @@ public class Hourse {
     private String userInfo;
     public String getUserInfo() {return userInfo;}
     public void setUserInfo(String userInfo) {this.userInfo = userInfo;}
+
     @Override
     public String toString() {
         return "Hourse{" +
@@ -177,6 +189,7 @@ public class Hourse {
                 ", madeYear='" + madeYear + '\'' +
                 ", connectPerson='" + connectPerson + '\'' +
                 ", connectPhone='" + connectPhone + '\'' +
+                ", card='" + card + '\'' +
                 ", detail='" + detail + '\'' +
                 ", address='" + address + '\'' +
                 ", userInfo='" + userInfo + '\'' +
@@ -205,5 +218,6 @@ public class Hourse {
 		jsonHourse.accumulate("detail", this.getDetail());
 		jsonHourse.accumulate("address", this.getAddress());
         jsonHourse.accumulate("userInfo", this.getUserInfo());
+        jsonHourse.accumulate("card", this.getCard());
 		return jsonHourse;
     }}

@@ -8,8 +8,8 @@ mapper.xml以statement为单位管理sql语句
  -->
 	<!-- 添加房屋信息记录 -->
 	<insert id="addHourse" parameterType="hourse">
-		insert into t_hourse(hourseName,buildingObj,housePhoto,hourseTypeObj,priceRangeObj,area,price,louceng,zhuangxiu,caoxiang,madeYear,connectPerson,connectPhone,detail,address) values
-		(#{hourseName},#{buildingObj.buildingId},#{housePhoto},#{hourseTypeObj.typeId},#{priceRangeObj.rangeId},#{area},#{price},#{louceng},#{zhuangxiu},#{caoxiang},#{madeYear},#{connectPerson},#{connectPhone},#{detail},#{address})
+		insert into t_hourse(hourseName,buildingObj,housePhoto,hourseTypeObj,priceRangeObj,area,price,louceng,zhuangxiu,caoxiang,madeYear,connectPerson,connectPhone,detail,address,card) values
+		(#{hourseName},#{buildingObj.buildingId},#{housePhoto},#{hourseTypeObj.typeId},#{priceRangeObj.rangeId},#{area},#{price},#{louceng},#{zhuangxiu},#{caoxiang},#{madeYear},#{connectPerson},#{connectPhone},#{detail},#{address},#{card})
 	</insert>
 
 	<!-- 按照查询条件分页查询房屋信息记录 -->
@@ -40,7 +40,7 @@ mapper.xml以statement为单位管理sql语句
 
 	<!-- 更新房屋信息记录 -->
 	<update id="updateHourse" parameterType="hourse">
-		update t_hourse set hourseName=#{hourseName},buildingObj=#{buildingObj.buildingId},housePhoto=#{housePhoto},hourseTypeObj=#{hourseTypeObj.typeId},priceRangeObj=#{priceRangeObj.rangeId},area=#{area},price=#{price},louceng=#{louceng},zhuangxiu=#{zhuangxiu},caoxiang=#{caoxiang},madeYear=#{madeYear},connectPerson=#{connectPerson},connectPhone=#{connectPhone},detail=#{detail},address=#{address} where hourseId = #{hourseId}
+		update t_hourse set hourseName=#{hourseName},buildingObj=#{buildingObj.buildingId},housePhoto=#{housePhoto},hourseTypeObj=#{hourseTypeObj.typeId},priceRangeObj=#{priceRangeObj.rangeId},area=#{area},price=#{price},louceng=#{louceng},zhuangxiu=#{zhuangxiu},caoxiang=#{caoxiang},madeYear=#{madeYear},connectPerson=#{connectPerson},connectPhone=#{connectPhone},detail=#{detail},address=#{address},userInfo=#{userInfo},card=#{card} where hourseId = #{hourseId}
 	</update>
 
 	<!-- 删除房屋信息记录 -->

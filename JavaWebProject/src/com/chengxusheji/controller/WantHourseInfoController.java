@@ -155,7 +155,14 @@ public class WantHourseInfoController extends BaseController {
 
 	/*前台按照查询条件分页查询求租信息信息*/
 	@RequestMapping(value = { "/frontlist" }, method = {RequestMethod.GET,RequestMethod.POST})
-	public String frontlist(@ModelAttribute("userObj") UserInfo userObj,String title,@ModelAttribute("position") AreaInfo position,@ModelAttribute("hourseTypeObj") HourseType hourseTypeObj,@ModelAttribute("priceRangeObj") PriceRange priceRangeObj,Integer currentPage, Model model, HttpServletRequest request) throws Exception  {
+	public String frontlist(@ModelAttribute("userObj") UserInfo userObj,String title,@ModelAttribute("position") AreaInfo position,
+							@ModelAttribute("hourseTypeObj") HourseType hourseTypeObj,
+							@ModelAttribute("priceRangeObj") PriceRange priceRangeObj,Integer currentPage, Model model,
+							HttpServletRequest request,HttpSession session) throws Exception  {
+		if((null == userObj ||  userObj.getUser_name() == null) && session.getAttribute("user") != null){
+			userObj = (UserInfo) session.getAttribute("user");
+		}
+		System.out.println(userObj.toString());
 		if (currentPage==null || currentPage == 0) currentPage = 1;
 		if (title == null) title = "";
 		List<WantHourseInfo> wantHourseInfoList = wantHourseInfoService.queryWantHourseInfo(userObj, title, position, hourseTypeObj, priceRangeObj, currentPage);

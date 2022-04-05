@@ -80,7 +80,7 @@
                 </div>
                 <div>
                     <input type="text" maxlength="19" class="ipt1" id="phoneIpt" name="email"
-                           placeholder="请输入手机号">
+                           placeholder="请输入邮箱">
                 </div>
                 <div>
                     <label for="passwordIpt">密码</label>

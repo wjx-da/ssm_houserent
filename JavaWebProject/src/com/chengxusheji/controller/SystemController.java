@@ -68,6 +68,7 @@ public class SystemController {
 			return "user/login";
 		}
 		UserInfo user =userInfoService.checkLogin(username,password);
+		System.out.println(user.toString()+"========");
 		if (user == null) {
 			model.addAttribute("msg","用户名或密码错误");
 			return "user/login";

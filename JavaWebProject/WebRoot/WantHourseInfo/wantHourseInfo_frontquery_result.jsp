@@ -137,12 +137,6 @@
 				<label for="title">标题:</label>
 				<input type="text" id="title" name="title" value="<%=title %>" class="form-control" placeholder="请输入标题">
 			</div>
-
-
-
-
-
-
             <div class="form-group">
             	<label for="position_areaId">求租区域：</label>
                 <select id="position_areaId" name="position.areaId" class="form-control">
