@@ -1,4 +1,6 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%> <%
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.chengxusheji.po.UserInfo" %>
+<%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
@@ -19,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="<%=basePath %>index.jsp">首页</a></li>
-                 <%--<li><a href="<%=basePath %>UserInfo/frontlist">用户信息</a></li>--%>
+               <%--  <li><a href="<%=basePath %>UserInfo/frontlist">用户信息</a></li>--%>
                 <li><a href="<%=basePath %>AreaInfo/frontlist">区域信息</a></li>
                 <li><a href="<%=basePath %>BuildingInfo/frontlist">楼盘信息</a></li>
                 <li><a href="<%=basePath %>Hourse/frontlist">房屋信息</a></li>
@@ -48,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <li><a href="<%=basePath %>index.jsp"><span class="glyphicon glyphicon-screenshot"></span>&nbsp;&nbsp;首页</a></li>
                         <li><a href="<%=basePath %>/GuestBook/guestBook_frontAdd.jsp"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;发布信息</a></li>
                         <li><a href="<%=basePath %>/UserInfo/userInfo_frontModify.jsp"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;修改个人资料</a></li>
-                        <li><a href="<%=basePath %>/WantHourseInfo/wantHourseInfo_frontModify.jsp"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;查看求租信息</a></li>
+                        <li><a href="<%=basePath %>WantHourseInfo/frontlist"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;查看求租信息</a></li>
                     </ul>
                 </li>
                 <li><a href="<%=basePath %>logout.jsp"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;退出</a></li>
@@ -56,8 +58,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </ul>
             
         </div>
+        <!--导航--> 
     </div>
 </nav>
+<!--导航结束--> 
 
 
 <div id="loginDialog" class="modal fade" tabindex="-1" role="dialog">

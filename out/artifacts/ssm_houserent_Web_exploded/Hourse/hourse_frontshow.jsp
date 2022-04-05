@@ -2,6 +2,7 @@
 <%@ page import="com.chengxusheji.po.*" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -121,7 +122,7 @@
 	}
 	var userInfo = "<%=hourse.getUserInfo()%>";
 	var user = "<%=session.getAttribute("user")%>";
-	if(userInfo === 'null' && user !=='null' && msg ==='null'){
+	if((userInfo === 'null'||userInfo ==='' )&& user !=='null' && msg ==='null'){
 		document.getElementById("test").innerHTML="<button onclick=\"location.href='<%=basePath %>Hourse/<%=hourse.getHourseId() %>/change'\" class=\"btn btn-primary\">申请租房</button>";
 	}
 var basePath = "<%=basePath%>";

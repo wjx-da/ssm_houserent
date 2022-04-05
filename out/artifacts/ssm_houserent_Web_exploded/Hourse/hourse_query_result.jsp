@@ -8,6 +8,7 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-edit-new" plain="true" onclick="hourse_manage_tool.edit();">修改</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-delete-new" plain="true" onclick="hourse_manage_tool.remove();">删除</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true"  onclick="hourse_manage_tool.reload();">刷新</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true"  onclick="hourse_manage_tool.contract();">查看合同</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="hourse_manage_tool.redo();">取消选择</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-export" plain="true" onclick="hourse_manage_tool.exportExcel();">导出到excel</a>
 	</div>

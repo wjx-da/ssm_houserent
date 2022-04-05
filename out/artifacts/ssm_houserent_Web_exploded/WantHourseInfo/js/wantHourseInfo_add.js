@@ -46,20 +46,6 @@ $(function () {
             }
         }
 	});
-	$("#wantHourseInfo_hourseObj_hourseId").combobox({
-		url:'Hourse/listAll',
-		valueField: "hourseId",
-		textField: "hourseName",
-		panelHeight: "auto",
-		editable: false, //不允许手动输入
-		required : true,
-		onLoadSuccess: function () { //数据加载完毕事件
-			var data = $("#wantHourseInfo_hourseObj_hourseId").combobox("getData");
-			if (data.length > 0) {
-				$("#wantHourseInfo_hourseObj_hourseId").combobox("select", data[0].typeId);
-			}
-		}
-	});
 	$("#wantHourseInfo_priceRangeObj_rangeId").combobox({
 	    url:'PriceRange/listAll',
 	    valueField: "rangeId",

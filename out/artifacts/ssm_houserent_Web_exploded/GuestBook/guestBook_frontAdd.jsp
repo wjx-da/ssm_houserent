@@ -19,6 +19,7 @@
 </head>
 <body style="margin-top:70px;">
 <jsp:include page="../header.jsp"></jsp:include>
+<script language="javascript" type="text/javascript" src="${pageContext.request.contextPath}/user/My97DatePicker/WdatePicker.js"></script>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12 wow fadeInUp" data-wow-duration="0.5s">
@@ -47,16 +48,15 @@
 							 </div>
 						  </div>
 						  <div class="form-group">
-						  	 <label for="guestBook_userObj_user_name" class="col-md-2 text-right">留言人:</label>
+						  	 <label for="guestBook_userObjuser_name" class="col-md-2 text-right">留言人:</label>
 						  	 <div class="col-md-8">
-							    <select id="guestBook_userObj_user_name" name="guestBook.userObj.user_name" class="form-control">
-							    </select>
+								 <input type="text" id="guestBook_userObjuser_name" name="guestBook.userObj.user_name" class="form-control" value="<%=session.getAttribute("user_name")%>" readonly/>
 						  	 </div>
 						  </div>
 						  <div class="form-group">
 						  	 <label for="guestBook_addTime" class="col-md-2 text-right">留言时间:</label>
 						  	 <div class="col-md-8">
-							    <input type="text" id="guestBook_addTime" name="guestBook.addTime" class="form-control" placeholder="请输入留言时间">
+								 <input type="text" id="guestBook_addTime" name="guestBook.addTime" id="qwe" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"  placeholder="请输入留言时间"/></br>
 							 </div>
 						  </div>
 				          <div class="form-group">

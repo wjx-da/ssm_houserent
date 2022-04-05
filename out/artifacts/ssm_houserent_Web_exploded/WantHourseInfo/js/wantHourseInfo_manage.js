@@ -184,6 +184,54 @@ function initWantHourseInfoManageTool() {
 		redo : function () {
 			$("#wantHourseInfo_manage").datagrid("unselectAll");
 		},
+		rent : function () {
+			var rows = $("#wantHourseInfo_manage").datagrid("getSelections");
+			if (rows.length > 0) {
+
+				$.messager.confirm("确定操作", "您正在要删除所选的记录吗？", function (flag) {
+					if (flag) {
+						var wantHourseIds = [];
+						for (var i = 0; i < rows.length; i ++) {
+							wantHourseIds.push(rows[i].wantHourseId);
+						}
+						top.location.href="Rent/add?wantHourseId="+wantHourseIds.join(",");
+						/*
+						$.get('/Rent/add', {'wantHourseId':wantHourseIds.join(",")});*/
+				/*	var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+					httpRequest.open('GET', '/Rent/add?wantHourseId='+wantHourseIds.join(","), false);//第二步：打开连接  将请求参数写在url中  ps:"./Ptest.php?name=test&nameone=testone"
+					httpRequest.send();//第三步：发送请求  将请求参数写在URL中*/
+						/*$.ajax({
+							type : "Get",
+							url : "Rent/add",
+							data : {
+								wantHourseIds : wantHourseIds.join(","),
+							},
+							beforeSend : function () {
+								$("#wantHourseInfo_manage").datagrid("loading");
+							},
+							success : function (data) {
+								if (data.success) {
+									$("#wantHourseInfo_manage").datagrid("loaded");
+									$("#wantHourseInfo_manage").datagrid("load");
+									$("#wantHourseInfo_manage").datagrid("unselectAll");
+									$.messager.show({
+										title : "提示",
+										msg : data.message
+									});
+								} else {
+									$("#wantHourseInfo_manage").datagrid("loaded");
+									$("#wantHourseInfo_manage").datagrid("load");
+									$("#wantHourseInfo_manage").datagrid("unselectAll");
+									$.messager.alert("消息",data.message);
+								}
+							},
+						});*/
+					}
+				});
+			} else {
+				$.messager.alert("提示", "请选择要删除的记录！", "info");
+			}
+		},
 		search: function() {
 			var queryParams = $("#wantHourseInfo_manage").datagrid("options").queryParams;
 			queryParams["userObj.user_name"] = $("#userObj_user_name_query").combobox("getValue");

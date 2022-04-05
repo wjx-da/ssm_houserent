@@ -1,0 +1,32 @@
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用
+mapper代理开发时将namespace指定为mapper接口的全限定名
+ -->
+<mapper namespace="com.chengxusheji.mapper.RentMapper">
+    <!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象
+    mapper.xml以statement为单位管理sql语句
+     -->
+    <!-- 添加租房记录 -->
+    <insert id="addRent" parameterType="com.chengxusheji.po.Rent">
+		insert into t_rent(hourseObj,userInfoObj,starttime,endtime,rentprice,nowtime) values
+		(#{hourseObj.hourseId},#{userInfoObj.user_name},#{starttime},#{endtime},#{rentprice},#{nowtime})
+	</insert>
+    <!-- 按照查询条件的租金范围记录数 -->
+    <select id="queryRent" resultMap="RentMap" parameterType="int">
+		select * from t_rent where hourseObj = #{houseId}
+	</select>
+	<resultMap id="RentMap" type="Rent">
+		<association property="hourseObj" column="hourseObj" select="com.chengxusheji.mapper.HourseMapper.getHourse" />
+		<association property="userInfoObj" column="userInfoObj" select="com.chengxusheji.mapper.UserInfoMapper.getUserInfo" />
+	</resultMap>
+    <!-- 更新租金范围记录 -->
+    <update id="updatePriceRange" parameterType="priceRange">
+		update t_priceRange set priceName=#{priceName} where rangeId = #{rangeId}
+	</update>
+
+    <!-- 删除租金范围记录 -->
+    <delete id="deletePriceRange" parameterType="int">
+		delete from t_priceRange where rangeId=#{rangeId}
+	</delete>
+
+</mapper>

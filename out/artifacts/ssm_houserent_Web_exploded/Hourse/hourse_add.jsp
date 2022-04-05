@@ -93,6 +93,13 @@
 
 		</div>
 		<div>
+			<span class="label">联系人身份证:</span>
+			<span class="inputControl">
+				<input class="textbox" type="text" id="hourse_card" name="hourse.card" style="width:200px"/>
+			</span>
+
+		</div>
+		<div>
 			<span class="label">联系电话:</span>
 			<span class="inputControl">
 				<input class="textbox" type="text" id="hourse_connectPhone" name="hourse.connectPhone" style="width:200px" />
@@ -108,6 +115,7 @@
 			</span>
 
 		</div>
+
 		<div>
 			<span class="label">地址:</span>
 			<span class="inputControl">
