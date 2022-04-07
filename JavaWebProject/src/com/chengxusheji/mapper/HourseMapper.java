@@ -1,6 +1,8 @@
 package com.chengxusheji.mapper;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import com.chengxusheji.po.Hourse;
 
@@ -26,4 +28,5 @@ public interface HourseMapper {
 	/*删除房屋信息记录*/
 	public void deleteHourse(int hourseId) throws Exception;
 
+    List<Hourse> queryHourseList1(String user_name) throws Exception;
 }

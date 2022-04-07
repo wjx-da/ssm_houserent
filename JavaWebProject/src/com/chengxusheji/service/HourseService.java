@@ -1,6 +1,7 @@
 package com.chengxusheji.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Resource; 
 import org.springframework.stereotype.Service;
 import com.chengxusheji.po.BuildingInfo;
@@ -116,5 +117,10 @@ public class HourseService {
     		hourseMapper.deleteHourse(Integer.parseInt(_hourseId));
     	}
     	return _hourseIds.length;
+    }
+
+    public List<Hourse> queryHourseByTenant(String user_name) throws  Exception {
+        return hourseMapper.queryHourseList1(user_name);
+
     }
 }

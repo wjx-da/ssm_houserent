@@ -107,9 +107,9 @@ let changeCodeBtn = function () {
 };
 // 验证码按钮点击事件
 sendCodeBtn.onclick = function () {
-    // 手机号不符合规则
+    // 邮箱号不符合规则
     if (!phoneType1) {
-        codeSpan.innerText = "请先输入手机号码";
+        codeSpan.innerText = "请先输入邮箱号";
         let timer = setTimeout(function () {
             codeSpan.innerText = "";
             clearTimeout(timer);
@@ -121,16 +121,14 @@ sendCodeBtn.onclick = function () {
     let sendContent = "email=" + phoneIpt.value.trim();//去空格，把用户的邮箱传过去
     let url = ROOTSources + "/customer_getCode?" + sendContent;
     let ajax = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
+
     ajax.open("GET", url, true);
     ajax.send();
     ajax.onreadystatechange = function () {
-        let result = JSON.parse(ajax.responseText);
-        alert(result.data);
         if (ajax.readyState === 4) {
-            let result = JSON.parse(ajax.responseText);
-            alert(result.data);
             if (ajax.status >= 200 && ajax.status < 300 || ajax.status === 304) {
                 try {
+                    let result = JSON.parse(ajax.responseText);
                     if(result.status === -1){
                         window.location.href = ROOTSources + "/404?msg=" +result.message;
                     }
@@ -138,7 +136,6 @@ sendCodeBtn.onclick = function () {
                         codeSpan.innerText = result.data; // 状态为 用户已经存在
                     else
                         codeFromServer = result.data + ""; // 可以注册
-
                 } catch (e) {
                     codeSpan.innerText = "验证码获取失败，请重试";
                 } finally {
@@ -149,8 +146,8 @@ sendCodeBtn.onclick = function () {
                 }
             }
         }
-
     }
+
 };
 /*// 注册点击事件
 registerBtn.onclick = function () {

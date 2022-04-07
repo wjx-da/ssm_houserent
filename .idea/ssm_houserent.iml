@@ -46,6 +46,6 @@
         <jarDirectory url="file://$MODULE_DIR$/JavaWebProject/WebRoot/WEB-INF/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.0.47" level="application_server_libraries" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.60" level="application_server_libraries" />
   </component>
 </module>

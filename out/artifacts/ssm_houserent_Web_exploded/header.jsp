@@ -51,6 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <li><a href="<%=basePath %>/GuestBook/guestBook_frontAdd.jsp"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;发布信息</a></li>
                         <li><a href="<%=basePath %>/UserInfo/userInfo_frontModify.jsp"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;修改个人资料</a></li>
                         <li><a href="<%=basePath %>WantHourseInfo/frontlist"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;查看求租信息</a></li>
+                        <li><a href="<%=basePath %>Hourse/owner"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;查看租房信息</a></li>
                     </ul>
                 </li>
                 <li><a href="<%=basePath %>logout.jsp"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;退出</a></li>

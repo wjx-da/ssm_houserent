@@ -310,6 +310,23 @@ public class HourseController extends BaseController {
         }
 	}
 
+	@RequestMapping(value = {"/owner"},method = {RequestMethod.GET})
+	public String Onwer(HttpServletRequest request,HttpSession session){
+		UserInfo userInfo = (UserInfo) session.getAttribute("user");
+		System.out.println(userInfo.toString());
+		List<Hourse> hourseList = null;
+		try {
+			hourseList = hourseService.queryHourseByTenant(userInfo.getUser_name());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("hourseList",  hourseList);
+		request.setAttribute("totalPage", 1);
+		request.setAttribute("recordNumber", hourseList.size());
+		request.setAttribute("currentPage", 1);
+		return "Hourse/hourse_frontshow1";
+	}
+
 	/*按照查询条件导出房屋信息信息到Excel*/
 	@RequestMapping(value = { "/OutToExcel" }, method = {RequestMethod.GET,RequestMethod.POST})
 	public void OutToExcel(String hourseName,@ModelAttribute("buildingObj") BuildingInfo buildingObj,@ModelAttribute("hourseTypeObj") HourseType hourseTypeObj,@ModelAttribute("priceRangeObj") PriceRange priceRangeObj,String madeYear,String connectPerson,String connectPhone, Model model, HttpServletRequest request,HttpServletResponse response) throws Exception {

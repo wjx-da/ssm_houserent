@@ -235,7 +235,7 @@
 		  	 </div>
 		  </div>
 		  <div class="form-group">
-		  	 <label for="hourse_housePhoto_edit" class="col-md-3 text-right">房屋图片:</label>
+		  	 <label for="hourse_housePhotoImg" class="col-md-3 text-right">房屋图片:</label>
 		  	 <div class="col-md-9">
 			    <img  class="img-responsive" id="hourse_housePhotoImg" border="0px"/><br/>
 			    <input type="hidden" id="hourse_housePhoto" name="hourse.housePhoto"/>

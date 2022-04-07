@@ -27,6 +27,10 @@ mapper.xml以statement为单位管理sql语句
 	<select id="queryHourseList" resultMap="hourseMap" >
 		select t_hourse.* from t_hourse,t_buildingInfo,t_hourseType,t_priceRange ${where} and t_hourse.buildingObj = t_buildingInfo.buildingId and t_hourse.hourseTypeObj = t_hourseType.typeId and t_hourse.priceRangeObj = t_priceRange.rangeId
 	</select>
+	<!-- 按照查询条件查询所有房屋信息记录 -->
+	<select id="queryHourseList1" resultMap="hourseMap" >
+		select t_hourse.* from t_hourse where t_hourse.userInfo= ${0}
+	</select>
 
     <!-- 按照查询条件的房屋信息记录数 -->
 	<select id="queryHourseCount" resultType="int">
